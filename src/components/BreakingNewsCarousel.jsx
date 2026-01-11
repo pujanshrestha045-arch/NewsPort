@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useNews } from '../hooks/UseNews'
+import Button from '../ui/Button'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 function BreakingNewsCarousel() {
   const{ articles: breakingNews } = useNews("general", 6)
@@ -11,6 +13,8 @@ function BreakingNewsCarousel() {
   useEffect(() => {
     setIsMobile(window.innerWidth < 768)
   }, [])
+
+  
 
   const article = breakingNews[currentIndex]
 
@@ -70,7 +74,7 @@ function BreakingNewsCarousel() {
         <img 
             src={imageUrl}
             alt={article.title}
-            className='object-cover'
+            className='object-cover w-full h-full'
         />
 
         {/* Overlay */}
@@ -93,10 +97,54 @@ function BreakingNewsCarousel() {
 
                 {/* Meta Info */}
                 <div className="flex items-center gap-4 text-white/60 text-xs md:text-sm mb-4 md:mb-6">
-                    <span>{source.name}</span>
-                    <span>{new Date(article.publisedAt).toLocaleString()}</span>
+                    <span>{sourceName}</span>
+                    <span>{new Date(article.publishedAt).toLocaleString()}</span>
                 </div>
+
+                {/* CTA */}
+                <a href={article.url} target='_blank' rel='noopener noreferrer'>
+                  <Button size='lg' className='bg-accent hover:bg-accent/90 text-accent-foreground'>
+                    Read Full Story
+                  </Button>
+                </a>
             </div>
+        </div>
+
+        {/* Navigation Controls */}
+        <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+          <Button
+            size='sm'
+            variant='secondary'
+            onClick={handlePrev}
+            className='bg-white/20 hover:bg-white/30 border-white/30'
+            aria-label='Previous Article'
+          >
+            <ChevronLeft className='w-4 h-4' />
+          </Button>
+          <Button
+            size='sm'
+            variant='secondary'
+            onClick={handleNext}
+            className='bg-white/20 hover:bg-white/30 border-white/30'
+            aria-label='Next Article'
+          >
+            <ChevronRight className='w-4 h-4' />
+          </Button>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-6 md:bottom-8 right-6 md:right-16 flex gap-2">
+          {breakingNews.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                setCurrentIndex(idx)
+                setIsAutoplay(false)
+              }}
+              className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex ? "bg-white w-8" : "bg-white/40"}`}
+              aria-label={`Go to slide ${idx + 1}`}
+           />
+          ))}
         </div>
       </div>
     </>

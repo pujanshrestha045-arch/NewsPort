@@ -13,7 +13,7 @@ export function useNews(category, limit) {
                 if (category) params.append("category", category)
                 if (limit) params.append("limit", limit.toString())
 
-                const response = await fetch(`/services/news?${params}`)
+                const response = await fetch(`/newsapi/news?${params}`)
                 if (!response.ok) throw new Error("Failed to fetch news")
 
                 const data = await response.json()
@@ -42,7 +42,7 @@ export function useTrendingNews(limit = 5) {
         const fetchTrending = async () => {
             try {
                 setLoading(true)
-                const response = await fetch(`/services/news/trending?limit=${limit}`)
+                const response = await fetch(`/newsapi/news/trending?limit=${limit}`)
                 if (!response.ok) throw new Error("Failed to fetch trending news")
 
                 const data = await response.json()
