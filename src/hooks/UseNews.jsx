@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { getNews, getTrending, getBreakingNews } from '../services/api'
 
 export function useNews(category, limit) {
     const [articles, setArticles] = useState([])
@@ -6,28 +7,33 @@ export function useNews(category, limit) {
     const [error, setError] = useState(null)
 
     useEffect(() => {
+        let isMounted = true
+
         const fetchNews = async () => {
             try {
                 setLoading(true)
-                const params = new URLSearchParams()
-                if (category) params.append("category", category)
-                if (limit) params.append("limit", limit.toString())
-
-                const response = await fetch(`/newsapi/news?${params}`)
-                if (!response.ok) throw new Error("Failed to fetch news")
-
-                const data = await response.json()
-                setArticles(data.articles)
                 setError(null)
+
+                const data = await getNews(category, limit)
+
+                if (isMounted) {
+                    setArticles(Array.isArray(data) ? data : [])
+                }
             } catch (err) {
-                setError(err instanceof Error ? err.message : "An error occurred")
-                setArticles([])
+                if (isMounted) {
+                    setError(err instanceof Error ? err.message : "An error occurred")
+                    setArticles([])
+                }
             } finally {
-                setLoading(false)
+                if (isMounted) setLoading(false)
             }
         }
 
         fetchNews()
+
+        return () => {
+            isMounted = false
+        }
     }, [category, limit])
 
     return { articles, loading, error }
@@ -40,26 +46,73 @@ export function useTrendingNews(limit = 5) {
 
     useEffect(() => {
         const fetchTrending = async () => {
+            let isMounted = true
+
             try {
                 setLoading(true)
-                const response = await fetch(`/newsapi/news/trending?limit=${limit}`)
-                if (!response.ok) throw new Error("Failed to fetch trending news")
-
-                const data = await response.json()
-                setArticles(data.articles)
                 setError(null)
+
+                const data = await getTrending(limit)
+
+                if (isMounted) {
+                    setArticles(Array.isArray(data) ? data : [])
+                }
+
             } catch (err) {
-                console.error(err)
-                setError(err instanceof Error ? err.message : "An error occurred")
+                if (isMounted) {
+                    console.error(err)
+                    setError(err instanceof Error ? err.message : "An error occurred")
+                    setArticles([]);
+                }
             } finally {
-                setLoading(false)
+                if (isMounted) setLoading(false)
             }
         }
 
         fetchTrending()
+
+        return () => {
+            isMounted = false
+        }
     }, [limit])
 
     return { articles, loading, error }
 }
 
+export function useBreakingNews(limit) {
+    const [articles, setArticles] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
+    useEffect(() => {
+        let isMounted = true
+
+        const fetchNews = async () => {
+            try {
+                setLoading(true)
+                setError(null)
+
+                const data = await getBreakingNews( limit )
+
+                if (isMounted) {
+                    setArticles(Array.isArray(data) ? data : [])
+                }
+            } catch (err) {
+                if (isMounted) {
+                    setError(err instanceof Error ? err.message : "An error occurred")
+                    setArticles([])
+                }
+            } finally {
+                if (isMounted) setLoading(false)
+            }
+        }
+
+        fetchNews()
+
+        return () => {
+            isMounted = false
+        }
+    }, [limit])
+
+    return { articles, loading, error }
+}

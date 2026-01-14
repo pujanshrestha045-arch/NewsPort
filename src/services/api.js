@@ -1,24 +1,43 @@
-const API_KEY = "7b960d7fbf7f4997995c140485319c6d"
-const BASE_URL = "https://newsapi.org/"
+const API_KEY = "pub_064137b650fc49ac84626776e09fcbbe"
+const BASE_URL = "https://newsdata.io/api/1"
 
-export async function fetchFromNewsAPI(endpoint, params = {}) {
-    const url = new URL(`https://newsapi.org/v2/${endpoint}`)
-    url.searchParams.append("apiKey", NEWS_API_KEY)
+export const getTrending = async (limit = 5) => {
+    const url = `${BASE_URL}/news?apikey=${API_KEY}&language=en&category=top&size=${limit}`
+    
+    const response = await fetch(url)
+    const data = await response.json()
 
-    Object.entries(params).forEach(([key, value]) => {
-        if(value) url.searchParams.append(key, value)
-    })
-
-    try {
-        const response = await fetch(url.toString())
-
-        if (!response.ok){
-            console.error(`NewsAPI error: ${response.status}`)
-            return null
-        }
-        return await response.json()
-    } catch(error) {
-        console.error("NewsAPI fetch failed:", error)
-        return null
+    if (data.status !== "success") {
+        throw new Error(data.message || "Failed to fetch trending news");
     }
+
+    return data.results || []
+};
+
+export const getNews = async (category, limit = 5) => {
+
+    const url = `${BASE_URL}/news?apikey=${API_KEY}&language=en&category=${category}&size=${limit}`
+    
+    const response = await fetch(url)
+    const data = await response.json()
+    
+    if (data.status !== "success") {
+        throw new Error(data.message || "Failed to fetch news");
+    }
+
+    return data.results || []
+}
+
+export const getBreakingNews = async ( limit = 5) => {
+
+    const url = `${BASE_URL}/latest?apikey=${API_KEY}&language=en&size=${limit}`
+    
+    const response = await fetch(url)
+    const data = await response.json()
+    
+    if (data.status !== "success") {
+        throw new Error(data.message || "Failed to fetch news");
+    }
+
+    return data.results || []
 }
