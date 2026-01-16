@@ -64,9 +64,9 @@ function BreakingNewsCarousel() {
 
   return (
     <>
-      <div className="bg-muted">
+      <div className="bg-linear-to-b from-background via-background/80 to-background/70">
         <div 
-          className="container mx-auto px-4 relative w-full h-80 md:h-96 overflow-hidden"
+          className="container mx-auto relative w-full h-80 md:h-96 overflow-hidden"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}
@@ -76,7 +76,7 @@ function BreakingNewsCarousel() {
           <img
             src={imageUrl}
             alt={article.title}
-            className='object-cover w-full h-full'
+            className='w-full h-full object-cover'
           />
 
           {/* Overlay */}
@@ -113,7 +113,7 @@ function BreakingNewsCarousel() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="absolute bottom-6 md:bottom-8 left-6 md:left-16 flex gap-2">
+          <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
             <Button
               size='sm'
               variant='secondary'

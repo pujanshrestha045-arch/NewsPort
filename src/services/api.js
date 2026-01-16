@@ -2,7 +2,7 @@ const API_KEY = "pub_064137b650fc49ac84626776e09fcbbe"
 const BASE_URL = "https://newsdata.io/api/1"
 
 export const getTrending = async (limit = 5) => {
-    const url = `${BASE_URL}/news?apikey=${API_KEY}&language=en&category=top&size=${limit}`
+    const url = `${BASE_URL}/latest?apikey=${API_KEY}&language=en&size=${limit}`
     
     const response = await fetch(url)
     const data = await response.json()
@@ -16,7 +16,7 @@ export const getTrending = async (limit = 5) => {
 
 export const getNews = async (category, limit = 5) => {
 
-    const url = `${BASE_URL}/news?apikey=${API_KEY}&language=en&category=${category}&size=${limit}`
+    const url = `${BASE_URL}/latest?apikey=${API_KEY}&language=en&category=${category}&size=${limit}`
     
     const response = await fetch(url)
     const data = await response.json()
