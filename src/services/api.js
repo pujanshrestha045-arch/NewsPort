@@ -1,4 +1,4 @@
-const API_KEY = "pub_064137b650fc49ac84626776e09fcbbe"
+const API_KEY = "pub_9210e804f1e54d33ac0f3f7f0c95b4f0"
 const BASE_URL = "https://newsdata.io/api/1"
 
 export const getTrending = async (limit = 5) => {

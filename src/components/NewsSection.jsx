@@ -5,8 +5,8 @@ import { ArrowRight } from 'lucide-react'
 import ArticleCard from './ArticleCard'
 import { useNews } from '../hooks/UseNews'
 
-function NewsSection({category, title, displayCount = 3}) {
-  const {data: articles, loading} = useNews(category, displayCount)
+function NewsSection({category, title, displayCount = 2}) {
+  const { articles, loading } = useNews(category, displayCount)
   return (
     <>
       <section className='py-12'>
@@ -18,7 +18,7 @@ function NewsSection({category, title, displayCount = 3}) {
                     <div className='w-12 h-1 bg-accent mt-2' />
                 </div>
                 <Button variant='outline'>
-                    <Link to={`/news?category=${category}`} className="flex items-center gap-2">
+                    <Link to={`/news?category=${category}`} className="flex items-center gap-2 font-semibold text-foreground">
                         View All <ArrowRight className='w-4 h-4' />
                     </Link>
                 </Button>

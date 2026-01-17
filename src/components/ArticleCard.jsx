@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
-import Card from '../ui/Card'
+import Card , { CardContent } from '../ui/Card'
 
 
 function ArticleCard({ article, featured = false }) {
@@ -26,14 +26,14 @@ function ArticleCard({ article, featured = false }) {
 
   return (
     <>
-      <Link to={`/news/${article.id}`}>
+      <Link to={`${article.link}`}>
         <Card className="group overflow-hidden cursor-pointer hover:shadow-md transition-shadow h-full">
             <CardContent className="p-0 flex flex-col h-full">
                 <div className="relative w-full h-40 overflow-hidden ">
-                    <img src={article.image} alt={article.title} className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <img src={article.image_url} alt={article.title} className="object-cover group-hover:scale-105 transition-transform duration-300" />
                 </div>
                 <div className="p-4 flex flex-col grow">
-                    <p>{article.source}</p>
+                    <p>{article.source_id}</p>
                     <h3 className='font-bold text-sm line-clamp-2 grow group-hover:text-primary'>{article.title}</h3>
                     <p className='text-xs mt-2'>{publishedDate.toLocaleString()}</p>
                 </div>

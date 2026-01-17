@@ -4,7 +4,7 @@ import Button from '../ui/Button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 function BreakingNewsCarousel() {
-  const { articles: breakingNews, loading, error } = useBreakingNews(6)
+  const { articles: breakingNews, loading, error } = useBreakingNews(3)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoplay, setIsAutoplay] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
@@ -64,7 +64,7 @@ function BreakingNewsCarousel() {
 
   return (
     <>
-      <div className="bg-linear-to-b from-background via-background/80 to-background/70">
+      <div className="bg-linear-to-b from-background via-background/90 to-secondary">
         <div 
           className="container mx-auto relative w-full h-80 md:h-96 overflow-hidden"
           onMouseEnter={handleMouseEnter}
