@@ -2,10 +2,9 @@ import React from 'react'
 import { useTrendingNews } from '../hooks/UseNews'
 import Card from '../ui/Card'
 import { TrendingUp } from 'lucide-react'
-import { Link } from 'react-router-dom'
 
 function TrendingPanel() {
-    const {articles = [], loading} = useTrendingNews(5)
+    const {articles = [], loading} = useTrendingNews(4)
 
     return (
         <>
@@ -17,7 +16,7 @@ function TrendingPanel() {
 
                 {loading ? (
                     <div className="space-y-4">
-                        {Array.from({ length: 5 }).map((_, i) => (
+                        {Array.from({ length: 4 }).map((_, i) => (
                             <div key={i} className='h-12 bg-muted rounded animate-pulse' />
                         ))}
                     </div>
