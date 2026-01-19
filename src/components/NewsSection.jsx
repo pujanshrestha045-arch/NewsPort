@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import ArticleCard from './ArticleCard'
 import { useNews } from '../hooks/UseNews'
 
-function NewsSection({category, title, displayCount = 2}) {
+function NewsSection({category, title, displayCount = 3}) {
   const { articles, loading } = useNews(category, displayCount)
   return (
     <>

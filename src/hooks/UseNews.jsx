@@ -45,31 +45,29 @@ export function useTrendingNews(limit = 5) {
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        const fetchTrending = async () => {
-            let isMounted = true
+        let isMounted = true
 
+        const fetchNews = async () => {
             try {
                 setLoading(true)
                 setError(null)
 
-                const data = await getTrending(limit)
+                const data = await getTrending  (limit)
 
                 if (isMounted) {
                     setArticles(Array.isArray(data) ? data : [])
                 }
-
             } catch (err) {
                 if (isMounted) {
-                    console.error(err)
                     setError(err instanceof Error ? err.message : "An error occurred")
-                    setArticles([]);
+                    setArticles([])
                 }
             } finally {
                 if (isMounted) setLoading(false)
             }
         }
 
-        fetchTrending()
+        fetchNews()
 
         return () => {
             isMounted = false
@@ -92,7 +90,7 @@ export function useBreakingNews(limit) {
                 setLoading(true)
                 setError(null)
 
-                const data = await getBreakingNews( limit )
+                const data = await getBreakingNews(limit)
 
                 if (isMounted) {
                     setArticles(Array.isArray(data) ? data : [])

@@ -8,7 +8,7 @@ function ArticleCard({ article, featured = false }) {
 
   if (featured){
     return (
-        <Link to={`${article.link}`}>
+        <a href={article.link} target='_blank' rel='noopener noreferrer'>
             <Card className = "group overflow-hidden cursor-pointer hover:shadow-lg transition-shadow h-full">
                 <div className="relative w-full h-64 overflow-hidden">
                     <img src={article.image_url} alt={article.title} className="object-cover" />
@@ -20,13 +20,13 @@ function ArticleCard({ article, featured = false }) {
                     </div>
                 </div>
             </Card>
-        </Link>
+        </a>
     )
   }
 
   return (
     <>
-      <Link to={`${article.link}`}>
+      <a href={article.link} target='_blank' rel='noopener noreferrer'>
         <Card className="group overflow-hidden cursor-pointer hover:shadow-md transition-shadow h-full">
             <CardContent className="p-0 flex flex-col h-full">
                 <div className="relative w-full h-40 overflow-hidden ">
@@ -39,7 +39,7 @@ function ArticleCard({ article, featured = false }) {
                 </div>
             </CardContent>
         </Card>
-      </Link>
+      </a>
     </>
   )
 }

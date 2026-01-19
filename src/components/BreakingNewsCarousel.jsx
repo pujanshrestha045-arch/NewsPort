@@ -64,7 +64,7 @@ function BreakingNewsCarousel() {
 
   return (
     <>
-      <div className="bg-linear-to-b from-background via-background/90 to-secondary">
+      <div className="bg-linear-to-t from-background via-background/90 to-secondary">
         <div 
           className="container mx-auto relative w-full h-80 md:h-96 overflow-hidden"
           onMouseEnter={handleMouseEnter}
@@ -76,7 +76,7 @@ function BreakingNewsCarousel() {
           <img
             src={imageUrl}
             alt={article.title}
-            className='w-full h-full object-cover'
+            className='w-full h-full object-top object-cover'
           />
 
           {/* Overlay */}
@@ -104,7 +104,7 @@ function BreakingNewsCarousel() {
               </div>
 
               {/* CTA */}
-              <a href={article.url} target='_blank' rel='noopener noreferrer'>
+              <a href={article.link} target='_blank' rel='noopener noreferrer'>
                 <Button size='lg' className='bg-accent hover:bg-accent/90 text-accent-foreground'>
                   Read Full Story
                 </Button>
