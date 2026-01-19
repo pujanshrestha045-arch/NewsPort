@@ -14,7 +14,7 @@ function NewsSection({category, title, displayCount = 3}) {
             {/* Section Header */}
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h2 className='text-3xl font-bold'>{title}</h2>
+                    <h2 className='text-xl sm:text-2xl md:text-3xl font-bold'>{title}</h2>
                     <div className='w-12 h-1 bg-accent mt-2' />
                 </div>
                 <Button variant='outline'>
