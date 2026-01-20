@@ -64,14 +64,13 @@ function Footer() {
                             </ul>
                         </div>
 
-                        {/* Bottom Bar */}
-                        <div>
-                            <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground">
-                                <p>{currentYear} News Portal. All rights reserved.</p>
-                                <p>Built with react</p>
-                            </div>
+                    </div>
+                    {/* Bottom Bar */}
+                    <div>
+                        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground">
+                            <p>{currentYear} News Portal. All rights reserved.</p>
+                            <p>Built with react</p>
                         </div>
-
                     </div>
                 </div>
             </footer>
