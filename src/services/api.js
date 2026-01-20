@@ -2,14 +2,6 @@ const API_KEY = "pub_9210e804f1e54d33ac0f3f7f0c95b4f0"
 const BASE_URL = "https://newsdata.io/api/1"
 const CACHE_DURATION = 5 * 60 * 1000
 
-let trendingCache = null
-let trendingCacheTime = 0
-
-let breakingCache = null
-let breakingCacheTime = 0
-
-const newsCache = {}
-
 async function fetchWithCache(url, storageKey) {
     const now = Date.now()
 

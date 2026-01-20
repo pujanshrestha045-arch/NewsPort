@@ -113,7 +113,7 @@ function BreakingNewsCarousel() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+          <div className="absolute bottom-6 md:bottom-8 right-6 md:right-16 flex gap-2">
             <Button
               size='sm'
               variant='secondary'
@@ -135,7 +135,7 @@ function BreakingNewsCarousel() {
           </div>
 
           {/* Slide Indicators */}
-          <div className="absolute bottom-6 md:bottom-8 right-6 md:right-16 flex gap-2">
+          <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
             {breakingNews.map((_, idx) => (
               <button
                 key={idx}

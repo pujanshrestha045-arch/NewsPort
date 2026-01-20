@@ -5,7 +5,7 @@ function Footer() {
     const currentYear = new Date().getFullYear()
     return (
         <>
-            <footer className="bg-card border-t border-border py-12">
+            <footer className="bg-linear-to-b from-background via-background/95 to-secondary border-t border-border py-12">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                         {/* About */}
@@ -56,7 +56,7 @@ function Footer() {
 
                         {/* Contact */}
                         <div>
-                            <h3 className='font-bold mb-4 text-muted-foreground'>Legal</h3>
+                            <h3 className='font-bold mb-4 text-muted-foreground'>Contact</h3>
                             <ul className='text-sm space-y-2 text-muted-foreground'>
                                 <li>Email: info@newsportal.com</li>
                                 <li>Phone: +977 01-2345678</li>
