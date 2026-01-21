@@ -18,7 +18,7 @@ function NewsPageContent() {
         {/* Page Header */}
         <div className="bg-card border-b border-border py-8">
             <div className="container mx-auto px-4">
-                <h1 className='text-3xl md:text-4xl font-bold mb-2'>
+                <h1 className='text-3xl md:text-4xl font-bold mb-2 text-foreground'>
                     {category ? category.charAt(0).toUpperCase() + category.slice(1) : "All"}
                 </h1>
                 <p className='text-muted-foreground'>Browse the latest news articles</p>
